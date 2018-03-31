@@ -1,0 +1,54 @@
+'Program: Hostel Roma Accommodations
+'Developer: Ben Kinyanjui
+'Date: March 31, 2018
+'Purpose: This program will calculate and display the total cost per night
+'         reservation at Hostel Roma.
+
+
+Option Strict On
+
+Public Class frmRomeHostelAccommodations
+    'Cost per Night at Hostel Roma  - used in multiple procedures
+    Const _cdecPricePerNight As Decimal = 18D 'Price Per night is $18.00
+    Private Sub frmRomeHostelAccommodations_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'When the form is loaded, this event handler is executed. It does display the 
+        'total cost, clears the text property and sets the focus on the txtNumberOfNights
+        'Textbox object
+
+        lblHeading.Text = _cdecPricePerNight.ToString("C") & "/Night"
+        lblCost.Text = ""
+        txtNumberOfNights.Focus()
+    End Sub
+    Private Sub btnDisplayCost_Click(sender As Object, e As EventArgs) Handles btnDisplayCost.Click
+
+        'This section is executed when one clicks or taps on the Display button
+        'that calculates the price for reservation per night (Number of nights
+        'times price per night)
+
+        Dim strNumberOfNights As String 'Dimensional variables
+        Dim intNumberOfNights As Integer
+        Dim decDisplayCost As Decimal
+
+        strNumberOfNights = txtNumberOfNights.Text
+        intNumberOfNights = Convert.ToInt32(strNumberOfNights)
+        decDisplayCost = intNumberOfNights * _cdecPricePerNight
+        lblCost.Text = decDisplayCost.ToString("C")
+
+    End Sub
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        'This event handler is executed when one taps or clicks the clear button
+        'It clears the number of nights in the text box and the text property in the 
+        'cost of stay.
+
+        txtNumberOfNights.Clear()
+        lblCost.Text = ""
+        txtNumberOfNights.Focus()
+
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        'Closes and terminates the program
+        Close()
+    End Sub
+
+End Class
